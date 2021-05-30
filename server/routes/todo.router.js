@@ -39,7 +39,30 @@ router.post('/',  (req, res) => {
 
 // PUT
 
+router.put('/:id', (req, res) => {
+    const taskId = req.params.id; // data from client-side put
+  
+    let isItComplete = req.body.completed;
+  
+    let queryString = ''; // queryString will be one of two arguments for the pool.query fn
+  
+    if (isItComplete === 'TRUE'){
+        queryString = 'UPDATE "todo" SET "completed"=TRUE WHERE "todo".id= $1;'; // $1 comes from url, it is req.params.id
+    } // end if
 
+    else {console.log('Could not evaluate req.body.completed. Is .completed connected correctly in client.js?');
+    };
+  
+    pool.query(queryString, [taskId]) // taskID is $1
+        .then(response => {
+            console.log(response.rowCount);
+            res.sendStatus(202); // created
+        }) // end .then
+        .catch(err => {
+            console.log('Server could not update task completion status due to', err);
+            res.sendStatus(500); // internal server error
+        }); // end .catch
+  }) // end .put
 
 // DELETE
 
@@ -56,5 +79,7 @@ router.delete('/:id', (req, res) => {
             res.sendStatus(500); // Internal server error
         }); // end .catch
   }); // end .delete
+
+  
 
 module.exports = router;

@@ -9,7 +9,7 @@ function readyNow(){
     $('#commitTask').on('click', commitTask);
 
     // PUT
-    $('taskTableBody').on('click', '.completeTask', completeTask);
+    $('#taskTableBody').on('click', '.completeTask', completeTask);
 
     // DELETE
     $('#taskTableBody').on('click', '.deleteTask', deletenator);
@@ -40,12 +40,14 @@ function appendTasks(tasks) {
   
     for(let i = 0; i < tasks.length; i += 1) {
       let task = tasks[i];
-      // For each book, append a new row to our table
+
       $('#taskTableBody').append(`
         <tr>
           <td>${task.task}</td>
           <td><button class="completeTask" data-id=${task.id}>Done</button></td>
           <td><button class="deleteTask" data-id=${task.id}>Delete</button></td>
+          <td><input type="checkbox" id="taskCheckbox" name="taskCheckbox">
+          <label for="taskCheckbox"></label><br></td>
         </tr>
       `); // end append
     } // end for loop
@@ -77,8 +79,33 @@ function postTask(committedTask) {
 // PUT
 
 function completeTask(){
-  console.log('in completeTask');
+  // console.log('in completeTask');
+  handleCompleteTask($(this).data("id"), "TRUE");
 } // end completeTask fn
+
+function handleCompleteTask(taskId, isComplete){
+  console.log('in handleCompleteTask');
+  $.ajax({
+    method: 'PUT',
+    url: `/todo/${taskId}`,
+    data: {
+      completed: isComplete
+    } // end data object
+  })
+  .then(response => {
+    console.log('COMPLETED!!');
+    alert(`WOW I THOUGHT YOU'D NEVER GET THAT DONE!`);
+    $(this).closest('tr').addClass("textMuted"); //////////////////////////////////////////////////////////////////////
+    // checkbox check by adding dynamic checkbox,
+    // setting a conditional in put function to check it off if "complete" is true,
+    // then calling getTasks();?
+    getTasks();
+  }) // end .then
+  .catch(err => {
+    console.log('Could not mark complete due to:', err);
+    alert('Unable to mark as completed. You sure you finished this task? 🧐');
+  }); // end .catch
+} // end handleCompleteTask fn
 
 // DELETE
 

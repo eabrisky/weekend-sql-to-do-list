@@ -6,26 +6,26 @@
 * Whether or not a Task is complete should also be stored in the database.
 * Deleting a Task should remove it both from the front end as well as the Database.
 
-[] create files
-    [] skeleton
-        [] server
-            [] server.js
-            [] modules
-                [] pool.js
-            [] public
-                [] favicon.ico
-                [] index.html
-                [] scripts
-                    [] client.js
-                [] styles
-                    [] style.css
-                [] vendors
-                    [] jquery.js
-                    []bootstrap.css
-                    []bootstrap-map.css
-            [] routes
-                []todo.router.js
-        [] database.sql (empty)
+[x] create files
+    [x] skeleton
+        [x] server
+            [x] server.js
+            [x] modules
+                [x] pool.js
+            [x] public
+                [x] favicon.ico
+                [x] index.html
+                [x] scripts
+                    [x] client.js
+                [x] styles
+                    [x] style.css
+                [x] vendors
+                    [x] jquery.js
+                    [x]bootstrap.css
+                    [x]bootstrap-map.css
+            [x] routes
+                [x]todo.router.js
+        [x] database.sql (empty)
         [x].gitignore
             [x] # OSX files
                 .DS_Store
@@ -56,7 +56,7 @@
 [] TEST FUNCTIONALITY
 
 [] create db in sql
-    [] db name "weekend-to-do-app"
+    [x] db name "weekend-to-do-app"
     [] create table
     [] define table rows
     [] update database.sql file

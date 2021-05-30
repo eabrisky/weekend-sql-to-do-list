@@ -1,7 +1,59 @@
 body {
-    background-color: linen;
+    background-color: #F4C430;
 }
 
 .textMuted {
-    color: rgb(172, 172, 172);
+    color: black;
+    background-color: #F4C430;
+    text-shadow: 1px 1px 2px gray;
+}
+
+header {
+    font-family: Andale Mono, monospace, sans-serif;
+    font-size: 5em;
+    text-shadow: 2px 2px 4px black;
+}
+
+#tableHead {
+    background-color: black;
+}
+
+#taskTable {
+    background-color: #9E9E9E;
+    color: #F4C430;
+    border-radius: 25px 25px 25px 25px;
+    text-shadow: 1px 1px 2px gray;
+}
+
+#taskInput {
+    margin: 3em;
+    width: 25em;
+    color: #F4C430;
+    background-color: black;
+    border-radius: 12px;
+}
+
+#taskHead {
+    padding: 10px;
+}
+
+.button {
+    color: #F4C430;
+    background-color: black;
+    border-radius: 12px;
+}
+
+.centerStuff {
+    text-align: center;
+}
+
+h2 {
+    font-family: Andale mono, monospace, sans-serif;
+    padding: 0.5em;
+    text-shadow: 1px 1px 2px black;
+}
+
+#welcome {
+    font-size: 0.5em;
+    text-shadow: 1px 1px 2px black;
 }

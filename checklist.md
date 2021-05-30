@@ -38,12 +38,12 @@
                 *.log
                 npm-debug.log*
 
-[] create wireframe of DOM
-    [] jamboard?
-    [] google service?
+[x] create wireframe of DOM
+    [x] jamboard?
+    [x] google service?
 
-[] build html off of wireframe
-    [] id's and classes
+[x] build html off of wireframe
+    [x] id's and classes
 
 [x] get npm server up and running
     [x] npm init/install
@@ -71,7 +71,5 @@
 
 [] styling
     [x] background color of the page
-    [] font family and size
+    [x] font family and size
     [] text color & or background color of tasks *to show whether or not they have been completed*
-
-[] CHECK INSTRUCTIONS.MD FOR FURTHER CHECKLIST ITEMS TO ADD

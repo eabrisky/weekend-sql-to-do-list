@@ -9,10 +9,10 @@ function readyNow(){
     $('#commitTask').on('click', commitTask);
 
     // PUT
-    $('#taskTableBody').on('click', '.completeTask', completeTask);
+    $('#taskTableBody').on('click', '#completeTask', completeTask);
 
     // DELETE
-    $('#taskTableBody').on('click', '.deleteTask', deletenator);
+    $('#taskTableBody').on('click', '#deleteTask', deletenator);
 
     // get tasks onto DOM on page load
     getTasks();
@@ -40,14 +40,18 @@ function appendTasks(tasks) {
   
     for(let i = 0; i < tasks.length; i += 1) {
       let task = tasks[i];
+      
+      let toggle;
+
+      if (task.completed === true){
+       toggle = 'textMuted';
+      } // end if
 
       $('#taskTableBody').append(`
-        <tr>
+        <tr class = ${toggle}>
           <td>${task.task}</td>
-          <td><button class="completeTask" data-id=${task.id}>Done</button></td>
-          <td><button class="deleteTask" data-id=${task.id}>Delete</button></td>
-          <td><input type="checkbox" id="taskCheckbox" name="taskCheckbox">
-          <label for="taskCheckbox"></label><br></td>
+          <td><button class="button centerStuff" id="completeTask" data-id=${task.id}>Done</button></td>
+          <td><button class="button centerStuff" id="deleteTask" data-id=${task.id}>Delete</button></td>
         </tr>
       `); // end append
     } // end for loop
@@ -81,6 +85,8 @@ function postTask(committedTask) {
 function completeTask(){
   // console.log('in completeTask');
   handleCompleteTask($(this).data("id"), "TRUE");
+  $(this).closest('[type=checkbox]').attr('checked', true);
+  $(this).closest('tr').addClass("textMuted");
 } // end completeTask fn
 
 function handleCompleteTask(taskId, isComplete){
@@ -95,10 +101,6 @@ function handleCompleteTask(taskId, isComplete){
   .then(response => {
     console.log('COMPLETED!!');
     alert(`WOW I THOUGHT YOU'D NEVER GET THAT DONE!`);
-    $(this).closest('tr').addClass("textMuted"); //////////////////////////////////////////////////////////////////////
-    // checkbox check by adding dynamic checkbox,
-    // setting a conditional in put function to check it off if "complete" is true,
-    // then calling getTasks();?
     getTasks();
   }) // end .then
   .catch(err => {

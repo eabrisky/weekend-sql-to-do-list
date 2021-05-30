@@ -11,27 +11,31 @@
     <link rel="stylesheet" href="styling/style.css">
 </head>
 <body>
-    <header>TO DO LIST</header>
-    <form action="">
+    <header class="centerStuff">COMMIT APP</header>
+
+    <h2 class ="centerStuff id="welcome">Welcome To the Commit App :)</h2>
+
+    <div class = "centerStuff">
   
-        <input type="text" id="taskInput" placeholder = "What you tryna work on">
+        <input type="text" id="taskInput" placeholder = "Enter a new task here...">
 
-        <button id = "commitTask">Commit</button>
+        <button id = "commitTask" class = "button">Commit</button>
 
-    </form>
-    <table id="taskTable" class="table table-info table-striped">
-        <thead> TASKS
-            <tr>
-                <th>Task</th>
+    </div>
+
+    <h2 id = "taskH" class = "centerStuff">Commitments</h2>
+
+    <table id="taskTable" class="table container">
+        <thead>
+            <tr id = "tableHead">
+                <th id = "taskHead">Task</th>
                 <th></th>
                 <th></th>
-                <th>Completed</th>
             </tr>
         </thead>
         <tbody id="taskTableBody">
 
         </tbody>
     </table>
-
 </body>
 </html>

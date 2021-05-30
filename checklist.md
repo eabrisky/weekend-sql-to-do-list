@@ -69,7 +69,7 @@
 
 [x] TEST FUNCTIONALITY
 
-[] styling
+[x] styling
     [x] background color of the page
     [x] font family and size
-    [] text color & or background color of tasks *to show whether or not they have been completed*
+    [x] text color & or background color of tasks *to show whether or not they have been completed*

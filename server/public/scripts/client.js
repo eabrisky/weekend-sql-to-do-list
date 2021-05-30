@@ -8,8 +8,11 @@ function readyNow(){
     //POST
     $('#commitTask').on('click', commitTask);
 
+    // PUT
+    $('taskTableBody').on('click', '.completeTask', completeTask);
+
     // DELETE
-    $('#taskTableBody').on('click', '.deleteTask', deleteTask);
+    $('#taskTableBody').on('click', '.deleteTask', deletenator);
 
     // get tasks onto DOM on page load
     getTasks();
@@ -22,7 +25,7 @@ function readyNow(){
 function getTasks() {
     console.log('in getTasks');
     $.ajax({
-      type: 'GET',
+      method: 'GET',
       url: '/todo'
     }).then(function(response) {
       console.log(response);
@@ -59,9 +62,9 @@ function commitTask() {
 
 function postTask(committedTask) {
   $.ajax({
-    type: 'POST',
+    method: 'POST',
     url: '/todo',
-    data: committedTask
+    data: committedTask // end 
     }).then(function(response) {
       console.log('Response from server:', response);
       getTasks(); // end .then
@@ -73,12 +76,28 @@ function postTask(committedTask) {
 
 // PUT
 
-// function putTask(){
-
-// } // end putTask fn
+function completeTask(){
+  console.log('in completeTask');
+} // end completeTask fn
 
 // DELETE
 
-function deleteTask(){
-    console.log('in deleteTask');
+function deleteTask(taskId){
+    // console.log('in deleteTask');
+  $.ajax({
+    method: 'DELETE',
+    url: `/todo/${taskId}`
+  }) // end method/url object
+  .then(response => {
+    console.log(`So we just gon' act like this task never happened? 🤨`);
+    getTasks();
+  }) // end .then
+  .catch(err => {
+    console.log(`I couldn't get rid of this task because`, err);
+    alert('R E C O N S I D E R');
+  }) // end .catch
 } // end deleteTasks fn
+
+function deletenator(){
+  deleteTask($(this).data("id")); // argument is this specific button's associated data's id
+} // end deleteTask fn

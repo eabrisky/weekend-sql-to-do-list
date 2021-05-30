@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     }) // end .then
     .catch(error => {
       console.log('could not return todo table', error);
-      res.sendStatus(500);
+      res.sendStatus(500); // internal server error
     }); // end .catch
   }); // end .get
 
@@ -43,6 +43,18 @@ router.post('/',  (req, res) => {
 
 // DELETE
 
-
+router.delete('/:id', (req, res) => {
+    const itemToDelete = req.params.id;
+    const queryString = `DELETE FROM "todo" WHERE "todo".id = $1;`;
+    pool.query(queryString, [itemToDelete]) // end .query
+        .then(response => {
+            console.log(`Removed task with id ${itemToDelete}.`);
+            res.sendStatus(200); // OK
+        }) // end .then
+        .catch(err => {
+            console.log('ERROR ON SERVER DELETING TASK', err);
+            res.sendStatus(500); // Internal server error
+        }); // end .catch
+  }); // end .delete
 
 module.exports = router;
